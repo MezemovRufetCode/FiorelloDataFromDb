@@ -1,0 +1,377 @@
+﻿@model HomeWM
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div id="mainPage">
+    <section id="entrance">
+        <div class="main">
+            @foreach (var slider in Model.Sliders)
+            {
+                <div class="content col-xl-3 col-lg-4 col-md-5 col-sm-5 col-6">
+                    <h3 class="heading">@slider.Title</h3>
+                    <div class="info ">
+                        <p>
+                            @slider.Desc
+                        </p>
+                    </div>
+                    <div class="img">
+                        <img src="~/assets/images/@slider.Signature" alt="">
+                    </div>
+                </div>
+                <div class="sliders">
+
+                    <div id="@slider.SlideIdForPlgn" style="display:none">
+                        <img src="~/assets/images/@slider.Image" alt="">
+                    </div>
+
+                    @*<div id="slidertype1" style="display:none">
+                    <img src="~/assets/images/h3-slider-background.jpg" alt="">
+                </div>
+                <div id="slidertype2" style="display:none">
+                    <img src="~/assets/images/h3-slider-background-2.jpg" alt="">
+                </div>
+                <div id="slidertype3" style="display:none">
+                    <img src="~/assets/images/h3-slider-background-3.jpg" alt="">
+                </div>*@
+                </div>
+            }
+        </div>
+    </section>
+    <section id="products">
+        <div class="container">
+            <div class="row">
+                <div class="products">
+                    <div class="top">
+                        <div class="headcategory col-lg-11">
+                            <ul>
+                             <div class="category-title active" id="all">
+                                <li>ALL</li>
+                             </div>
+                            <div class="category-title" id="popular">
+                            <li>POPULAR</li>
+                        </div>
+                            <div class="category-title" id="winter">
+                            <li>WINTER</li>
+                        </div>
+                            <div class="category-title" id="various">
+                            <li>VARIOUS</li>
+                        </div>
+                            <div class="category-title" id="exotic">
+                            <li>EXOTIC</li>
+                        </div>
+                            <div class="category-title" id="greens">
+                            <li>GREENS</li>
+                        </div>
+                            <div class="category-title" id="cactuses">
+                            <li>CACTUSES</li>
+                        </div>
+                             </ul>
+                        </div>
+                    <div class="filter col-lg-1">
+                        <p>FILTER <span><i class="fas fa-sort-down"></i></span></p>
+                    </div>
+                    </div>
+
+                <div class="filterArea">
+                    <div class="filterBy">
+                        <div class="sort">
+                            <h5>Sort By</h5>
+                            <ul>
+                                <li>Default</li>
+                                <li>Newnest</li>
+                                <li>Popularity</li>
+                                <li>Price:Low to High</li>
+                                <li>Price:High to Low</li>
+                            </ul>
+                        </div>
+                        <div class="price">
+                            <h5>Price Range</h5>
+                            <ul>
+                                <li>All</li>
+                                <li>$0-$10</li>
+                                <li>$10-$20</li>
+                                <li>$20-$30</li>
+                                <li>$30-$40</li>
+                                <li>$40+</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="posts-collect">
+                    <div class="all popular winter greens col-lg-3 col-md-4 col-sm-6">
+                        <div class="post-img">
+                            <a href="">
+                                <figure>
+                                    <img src="~/assets/images/shop-7-img.jpg" alt="">
+                                </figure>
+                            </a>
+                        </div>
+                        <div class="flower-info">
+                            <h5 class="name">MAJESTY PALM</h5>
+                            <p class="price">$100</p>
+                        </div>
+                    </div>
+                    <div class="all popular winter col-lg-3 col-md-4 col-sm-6">
+                        <div class="post-img">
+                            <a href="">
+                                <figure>
+                                    <img src="~/assets/images/shop-8-img.jpg" alt="">
+                                </figure>
+                            </a>
+                        </div>
+                        <div class="flower-info">
+                            <h5 class="name">FOXGLOVE FLOWER</h5>
+                            <p class="price">$100</p>
+                        </div>
+                    </div>
+                    <div class="all popular winter col-lg-3 col-md-4 col-sm-6">
+                        <div class="post-img">
+                            <a href="">
+                                <figure>
+                                    <img src="~/assets/images/shop-9-img.jpg" alt="">
+                                </figure>
+                            </a>
+                        </div>
+                        <div class="flower-info">
+                            <h5 class="name">SWEET ALYSSUM</h5>
+                            <p class="price">$100</p>
+                        </div>
+                    </div>
+                    <div class="all popular greens col-lg-3 col-md-4 col-sm-6">
+                        <div class="post-img">
+                            <a href="">
+                                <figure>
+                                    <img src="~/assets/images/shop-10-img.jpg" alt="">
+                                </figure>
+                            </a>
+                        </div>
+                        <div class="flower-info">
+                            <h5 class="name">SPRING SNOWFLAKE</h5>
+                            <p class="price">$100</p>
+                        </div>
+                    </div>
+                    <div class="all popular various exotic col-lg-3 col-md-4 col-sm-6">
+                        <div class="post-img">
+                            <a href="">
+                                <figure>
+                                    <img src="~/assets/images/shop-11-img.jpg" alt="">
+                                </figure>
+                            </a>
+                        </div>
+                        <div class="flower-info">
+                            <h5 class="name">SCARLET SAGE</h5>
+                            <p class="price">$100</p>
+                        </div>
+                    </div>
+                    <div class="all various cactuses col-lg-3 col-md-4 col-sm-6">
+                        <div class="post-img">
+                            <a href="">
+                                <figure>
+                                    <img src="~/assets/images/shop-12-img.jpg" alt="">
+                                </figure>
+                            </a>
+                        </div>
+                        <div class="flower-info">
+                            <h5 class="name">ROCK SOAPWORT</h5>
+                            <p class="price">$100</p>
+                        </div>
+                    </div>
+                    <div class="all various greens col-lg-3 col-md-4 col-sm-6">
+                        <div class="post-img">
+                            <a href="">
+                                <figure>
+                                    <img src="~/assets/images/shop-13-img.jpg" alt="">
+                                </figure>
+                            </a>
+                        </div>
+                        <div class="flower-info">
+                            <h5 class="name">SUMMER SAVORY</h5>
+                            <p class="price">$100</p>
+                        </div>
+                    </div>
+                    <div class="all various exotic col-lg-3 col-md-4 col-sm-6">
+                        <div class="post-img">
+                            <a href="">
+                                <figure>
+                                    <img src="~/assets/images/shop-14-img.jpg" alt="">
+                                </figure>
+                            </a>
+                        </div>
+                        <div class="flower-info">
+                            <h5 class="name">WILD ROSES</h5>
+                            <p class="price">$100</p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+             </div>
+        </div>
+    </section>
+<section id="valentine">
+    <div class="container">
+        <div class="row">
+            <div class="movie col-lg-6">
+                <a href="https://www.youtube.com/embed/K-0cjGCNYfs">
+                    <figure>
+                        <img src="~/assets/images/h3-video-img.jpg" alt="">
+                        <span class="outline"><span class="PlayBtn"><i class="fas fa-play"></i></span></span>
+                    </figure>
+                </a>
+            </div>
+            <div class="content col-lg-6">
+                <div class="heading">
+                    <h2>Sunrise Your <span>Valentine!</span></h2>
+                    <h2>Let us arrange a smile.</h2>
+                </div>
+                <div class="info">
+                    <p>
+                        Where flowers are our inspiration to create lasting memories. Whatever the occasion...
+                    </p>
+                </div>
+                <div class="vlist">
+                    <ul>
+                        <li><span><i class="fas fa-heart"></i></span> Hand picked just for you.</li>
+                        <li><span><i class="fas fa-heart"></i></span> Unique flower arrangements</li>
+                        <li><span><i class="fas fa-heart"></i></span> Best way to say you care.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="experts">
+    <div class="container">
+        <h1 class="heading">
+            Flower Experts
+        </h1>
+        <p class="info">
+            A perfect blend of creativity, energy, communication, happiness and love. Let us arrange
+            a
+            smile for you.
+        </p>
+        <div class="row">
+            <div class="box-container">
+
+                @foreach (var expert in Model.Experts)
+                {
+                    <div class="box col-lg-3 col-sm-6 col-md-6">
+                        <img src="~/assets/images/@expert.Image" alt="">
+                        <h4>@expert.FullName</h4>
+                        <p class="work">@expert.Job</p>
+                    </div>
+                }
+
+                @*<div class="box col-lg-3 col-sm-6 col-md-6">
+            <img src="~/assets/images/h3-team-img-2.png" alt="">
+            <h4>SHIRLEY HARRIS</h4>
+            <p class="work">Manager</p>
+        </div>
+        <div class="box col-lg-3 col-sm-6 col-md-6">
+            <img src="~/assets/images/h3-team-img-3.png" alt="">
+            <h4>BEVERLY CLARK</h4>
+            <p class="work">Florist</p>
+        </div>
+        <div class="box col-lg-3 col-sm-6 col-md-6">
+            <img src="~/assets/images/h3-team-img-4.png" alt="">
+            <h4>AMANDA WATKINS</h4>
+            <p class="work">Florist</p>
+        </div>*@
+
+            </div>
+        </div>
+    </div>
+</section>
+<section id="subscribe">
+    <div class="parallax-window Subscribe" data-parallax="scroll"
+         data-image-src="./assets/images/h3-background-img.jpg">
+        <div class="content">
+            <h3>Join The Colorful Bunch!</h3>
+            <div class="beeingsubs">
+                <input class="subsEmail" type="email" required placeholder="Email Address">
+                <input class="subEmbtn" type="submit" value="SUBSCRIBE">
+            </div>
+        </div>
+    </div>
+</section>
+<section id="blogposts">
+    <div class="container">
+        <div class="blogUp">
+            <h3>From our Blog</h3>
+            <p>
+                A perfect blend of creativity, energy, communication, happiness and love. Let us arrange a smile
+                for
+                you.
+            </p>
+        </div>
+        <div class="row">
+            <div class="blog col-lg-4 col-md-6 col-sm-6 col-12">
+                <a href="">
+                    <figure><img class="img" src="~/assets/images/blog-feature-img-1.jpg" alt=""></figure>
+                </a>
+                <div class="heading">
+                    <a href="">
+                        <h4>Flower Power</h4>
+                    </a>
+                </div>
+                <div class="info">Class aptent taciti sociosqu ad litora torquent per conubia nostra, per</div>
+            </div>
+
+            <div class="blog col-lg-4 col-md-6 col-sm-6 col-12">
+                <a href="">
+                    <figure>
+                        <img class="img" src="~/assets/images/blog-feature-img-3.jpg" alt="">
+                    </figure>
+                </a>
+                <div class="heading">
+                    <a href="">
+                        <h4>Local Florists</h4>
+                    </a>
+                </div>
+                <div class="info">Class aptent taciti sociosqu ad litora torquent per conubia nostra, per</div>
+            </div>
+            <div class="blog col-lg-4 col-md-6 col-sm-6 col-12">
+                <a href="">
+                    <figure><img class="img" src="~/assets/images/blog-feature-img-4.jpg" alt=""></figure>
+                </a>
+                <div class="heading">
+                    <a href="">
+                        <h4>Flower Beauty</h4>
+                    </a>
+                </div>
+                <div class="info">Class aptent taciti sociosqu ad litora torquent per conubia nostra, per</div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="reviews">
+    <div class="owl-carousel owl-theme">
+        @foreach (var review in Model.Reviews)
+        {
+            <div class="item ">
+                <div class="Slide">
+                    <img src="~/assets/images/@review.Image" alt="">
+                    <p class="info">
+                        @review.ReviewContent
+                    </p>
+                    <p class="name">@review.UserFullname</p>
+                    <p class="work">@review.Job</p>
+                </div>
+            </div>
+        }
+
+        @*<div class="item">
+            <div class="Slide">
+                <img src="~/assets/images/h3-team-img-2.png" alt="">
+                <p class="info">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia at quidem,
+                    ipsam
+                </p>
+                <p class="name">ANNA BARNES</p>
+                <p class="work">Florist</p>
+            </div>
+        </div>*@
+    </div>
+</section>
+</div>
+
