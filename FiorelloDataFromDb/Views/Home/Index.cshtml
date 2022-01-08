@@ -45,29 +45,18 @@
                     <div class="top">
                         <div class="headcategory col-lg-11">
                             <ul>
-                             <div class="category-title active" id="all">
+                                <div class="category-title active" id="all">
                                 <li>ALL</li>
-                             </div>
-                            <div class="category-title" id="popular">
-                            <li>POPULAR</li>
-                        </div>
-                            <div class="category-title" id="winter">
-                            <li>WINTER</li>
-                        </div>
-                            <div class="category-title" id="various">
-                            <li>VARIOUS</li>
-                        </div>
-                            <div class="category-title" id="exotic">
-                            <li>EXOTIC</li>
-                        </div>
-                            <div class="category-title" id="greens">
-                            <li>GREENS</li>
-                        </div>
-                            <div class="category-title" id="cactuses">
-                            <li>CACTUSES</li>
-                        </div>
-                             </ul>
-                        </div>
+                                </div>
+                        @foreach (Category category in Model.Categories)
+                        {
+                            <div class="category-title" id="@category.Name.ToLower()">
+                                <li>@category.Name.ToUpper()</li>
+                            </div>
+                        }
+
+                        </ul>
+                    </div>
                     <div class="filter col-lg-1">
                         <p>FILTER <span><i class="fas fa-sort-down"></i></span></p>
                     </div>
@@ -99,110 +88,99 @@
                     </div>
                 </div>
                 <div class="posts-collect">
-                    <div class="all popular winter greens col-lg-3 col-md-4 col-sm-6">
-                        <div class="post-img">
-                            <a href="">
-                                <figure>
-                                    <img src="~/assets/images/shop-7-img.jpg" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <div class="flower-info">
-                            <h5 class="name">MAJESTY PALM</h5>
-                            <p class="price">$100</p>
-                        </div>
-                    </div>
-                    <div class="all popular winter col-lg-3 col-md-4 col-sm-6">
-                        <div class="post-img">
-                            <a href="">
-                                <figure>
-                                    <img src="~/assets/images/shop-8-img.jpg" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <div class="flower-info">
-                            <h5 class="name">FOXGLOVE FLOWER</h5>
-                            <p class="price">$100</p>
-                        </div>
-                    </div>
-                    <div class="all popular winter col-lg-3 col-md-4 col-sm-6">
-                        <div class="post-img">
-                            <a href="">
-                                <figure>
-                                    <img src="~/assets/images/shop-9-img.jpg" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <div class="flower-info">
-                            <h5 class="name">SWEET ALYSSUM</h5>
-                            <p class="price">$100</p>
-                        </div>
-                    </div>
-                    <div class="all popular greens col-lg-3 col-md-4 col-sm-6">
-                        <div class="post-img">
-                            <a href="">
-                                <figure>
-                                    <img src="~/assets/images/shop-10-img.jpg" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <div class="flower-info">
-                            <h5 class="name">SPRING SNOWFLAKE</h5>
-                            <p class="price">$100</p>
-                        </div>
-                    </div>
-                    <div class="all popular various exotic col-lg-3 col-md-4 col-sm-6">
-                        <div class="post-img">
-                            <a href="">
-                                <figure>
-                                    <img src="~/assets/images/shop-11-img.jpg" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <div class="flower-info">
-                            <h5 class="name">SCARLET SAGE</h5>
-                            <p class="price">$100</p>
-                        </div>
-                    </div>
-                    <div class="all various cactuses col-lg-3 col-md-4 col-sm-6">
-                        <div class="post-img">
-                            <a href="">
-                                <figure>
-                                    <img src="~/assets/images/shop-12-img.jpg" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <div class="flower-info">
-                            <h5 class="name">ROCK SOAPWORT</h5>
-                            <p class="price">$100</p>
-                        </div>
-                    </div>
-                    <div class="all various greens col-lg-3 col-md-4 col-sm-6">
-                        <div class="post-img">
-                            <a href="">
-                                <figure>
-                                    <img src="~/assets/images/shop-13-img.jpg" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <div class="flower-info">
-                            <h5 class="name">SUMMER SAVORY</h5>
-                            <p class="price">$100</p>
-                        </div>
-                    </div>
-                    <div class="all various exotic col-lg-3 col-md-4 col-sm-6">
-                        <div class="post-img">
-                            <a href="">
-                                <figure>
-                                    <img src="~/assets/images/shop-14-img.jpg" alt="">
-                                </figure>
-                            </a>
-                        </div>
-                        <div class="flower-info">
-                            <h5 class="name">WILD ROSES</h5>
-                            <p class="price">$100</p>
-                        </div>
-                    </div>
+                    @await Html.PartialAsync("_FlowerPartialView", Model.Flowers)
+                    @*<div class="all popular winter col-lg-3 col-md-4 col-sm-6">
+            <div class="post-img">
+                <a href="">
+                    <figure>
+                        <img src="~/assets/images/shop-8-img.jpg" alt="">
+                    </figure>
+                </a>
+            </div>
+            <div class="flower-info">
+                <h5 class="name">FOXGLOVE FLOWER</h5>
+                <p class="price">$100</p>
+            </div>
+        </div>
+
+        <div class="all popular winter col-lg-3 col-md-4 col-sm-6">
+            <div class="post-img">
+                <a href="">
+                    <figure>
+                        <img src="~/assets/images/shop-9-img.jpg" alt="">
+                    </figure>
+                </a>
+            </div>
+            <div class="flower-info">
+                <h5 class="name">SWEET ALYSSUM</h5>
+                <p class="price">$100</p>
+            </div>
+        </div>
+        <div class="all popular greens col-lg-3 col-md-4 col-sm-6">
+            <div class="post-img">
+                <a href="">
+                    <figure>
+                        <img src="~/assets/images/shop-10-img.jpg" alt="">
+                    </figure>
+                </a>
+            </div>
+            <div class="flower-info">
+                <h5 class="name">SPRING SNOWFLAKE</h5>
+                <p class="price">$100</p>
+            </div>
+        </div>
+        <div class="all popular various exotic col-lg-3 col-md-4 col-sm-6">
+            <div class="post-img">
+                <a href="">
+                    <figure>
+                        <img src="~/assets/images/shop-11-img.jpg" alt="">
+                    </figure>
+                </a>
+            </div>
+            <div class="flower-info">
+                <h5 class="name">SCARLET SAGE</h5>
+                <p class="price">$100</p>
+            </div>
+        </div>
+        <div class="all various cactuses col-lg-3 col-md-4 col-sm-6">
+            <div class="post-img">
+                <a href="">
+                    <figure>
+                        <img src="~/assets/images/shop-12-img.jpg" alt="">
+                    </figure>
+                </a>
+            </div>
+            <div class="flower-info">
+                <h5 class="name">ROCK SOAPWORT</h5>
+                <p class="price">$100</p>
+            </div>
+        </div>
+        <div class="all various greens col-lg-3 col-md-4 col-sm-6">
+            <div class="post-img">
+                <a href="">
+                    <figure>
+                        <img src="~/assets/images/shop-13-img.jpg" alt="">
+                    </figure>
+                </a>
+            </div>
+            <div class="flower-info">
+                <h5 class="name">SUMMER SAVORY</h5>
+                <p class="price">$100</p>
+            </div>
+        </div>
+        <div class="all various exotic col-lg-3 col-md-4 col-sm-6">
+            <div class="post-img">
+                <a href="">
+                    <figure>
+                        <img src="~/assets/images/shop-14-img.jpg" alt="">
+                    </figure>
+                </a>
+            </div>
+            <div class="flower-info">
+                <h5 class="name">WILD ROSES</h5>
+                <p class="price">$100</p>
+            </div>
+        </div>*@
                 </div>
                 </div>
              </div>

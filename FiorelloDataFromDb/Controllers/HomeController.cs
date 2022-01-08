@@ -2,6 +2,7 @@
 using FiorelloDataFromDb.Models;
 using FiorelloDataFromDb.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,10 @@ namespace FiorelloDataFromDb.Controllers
             {
                 Sliders = _context.Sliders.ToList(),
                 Experts=_context.Experts.ToList(),
-                Reviews=_context.Reviews.ToList()
+                Reviews=_context.Reviews.ToList(),
+                Categories=_context.Categories.ToList(),
+                Flowers=_context.Flowers.Include(f=>f.FlowerImages).Include(f=>f.FlowerCategories).ThenInclude(fc=>fc.Category).ToList()
+
             };
             return View(homeWM);
         }
