@@ -25,5 +25,6 @@ namespace FiorelloDataFromDb.Models
         public Compaign Compaign { get; set; }
         public List<FlowerImage> FlowerImages { get; set; }
         public List<FlowerCategory> FlowerCategories { get; set; }
+        public List<FlowerTag> FlowerTags { get; set; }
     }
 }

@@ -28,7 +28,8 @@ namespace FiorelloDataFromDb.Controllers
                 Experts=_context.Experts.ToList(),
                 Reviews=_context.Reviews.ToList(),
                 Categories=_context.Categories.ToList(),
-                Flowers=_context.Flowers.Include(f=>f.FlowerImages).Include(f=>f.FlowerCategories).ThenInclude(fc=>fc.Category).ToList()
+                Flowers=_context.Flowers.Include(f=>f.FlowerImages).Include(f=>f.FlowerCategories).ThenInclude(fc=>fc.Category).ToList(),
+                Setting=_context.Settings.FirstOrDefault()
 
             };
             return View(homeWM);
