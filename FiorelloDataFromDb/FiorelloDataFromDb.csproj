@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\FiorelloManager\Data\" />
+    <Folder Include="Areas\FiorelloManager\Models\" />
     <Folder Include="wwwroot\assets\CSS\" />
   </ItemGroup>
 

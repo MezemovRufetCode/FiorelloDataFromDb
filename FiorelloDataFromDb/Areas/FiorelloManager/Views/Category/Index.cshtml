@@ -1,0 +1,65 @@
+﻿
+@model List<Category>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="d-flex" style="justify-content:flex-end">
+        <a asp-controller="category" asp-action="create" class="btn btn-primary btn-icon-text mt-3">
+            <i class="mdi mdi-upload btn-icon-prepend"></i>
+            Create
+        </a>
+    </div>
+
+    <table class="table table-dark mt-3">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Flower Count
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Category category in Model)
+            {
+                <tr>
+                    <td>
+                        @category.Id
+                    </td>
+                    <td>
+                        @category.Name
+                    </td>
+                    <td>
+                        @category.FlowerCategories.Count
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <div class="row justify-content-center mt-3">
+        <nav aria-label="...">
+            <ul class="pagination" style="justify-content:center">
+                <li class="page-item disabled">
+                    <a class="page-link">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="#">2</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
