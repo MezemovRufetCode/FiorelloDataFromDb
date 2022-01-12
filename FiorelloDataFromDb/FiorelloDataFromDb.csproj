@@ -7,6 +7,7 @@
   <ItemGroup>
     <Folder Include="Areas\FiorelloManager\Data\" />
     <Folder Include="Areas\FiorelloManager\Models\" />
+    <Folder Include="Areas\FiorelloManager\Views\Tag\" />
     <Folder Include="wwwroot\assets\CSS\" />
   </ItemGroup>
 
