@@ -68,24 +68,11 @@ namespace FiorelloDataFromDb.Areas.FiorelloManager.Controllers
         public IActionResult Delete(int id)
         {
             Category category = _context.Categories.FirstOrDefault(c => c.Id == id);
-            return View(category);
-        }
-        public IActionResult Delete(Category category)
-        {
-
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
-            Category exCategory = _context.Categories.FirstOrDefault(c => c.Id == category.Id);
-            if (exCategory == null)
-            {
-                return NotFound();
-            }
-
-            _context.Categories.Remove(exCategory);
+            if (category == null)
+                return Json(new { status = 404 });
+            _context.Categories.Remove(category);
             _context.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            return Json(new { status=200});
         }
     }
 }

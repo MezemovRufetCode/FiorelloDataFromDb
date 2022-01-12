@@ -16,10 +16,17 @@ namespace FiorelloDataFromDb.Controllers
         {
             _context = context;
         }
-        public IActionResult Details(int id)
+        public IActionResult Details(int id,int categoryId)
         {
             Flower flower = _context.Flowers.Include(f=>f.FlowerCategories).ThenInclude(fc=>fc.Category)
                 .Include(f=>f.FlowerImages).Include(f=>f.FlowerTags).ThenInclude(ft=>ft.Tag).FirstOrDefault(f=>f.Id==id);
+            if (flower == null)
+            {
+                return NotFound();
+            }
+            ViewBag.RelatedFlowers = _context.Flowers.Include(f=>f.FlowerImages).Include(f=>f.FlowerCategories).Where(f => f.FlowerCategories.FirstOrDefault().CategoryId==categoryId && f.Id!=id).Take(4).ToList();
+            //Bir nece kateqoriya uchun where ile yoxla
+
             return View(flower);
         }
     }

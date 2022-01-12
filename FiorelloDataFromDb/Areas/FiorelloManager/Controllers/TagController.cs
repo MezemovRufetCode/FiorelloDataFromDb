@@ -70,25 +70,12 @@ namespace FiorelloDataFromDb.Areas.FiorelloManager.Controllers
         public IActionResult Delete(int id)
         {
             Tag tag = _context.Tags.FirstOrDefault(t => t.Id == id);
-            return View(tag);
-        }
-        public IActionResult Delete(Tag tag)
-        {
 
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
-            Tag exTag = _context.Tags.FirstOrDefault(t => t.Id == tag.Id);
-            if (exTag == null)
-            {
-                return NotFound();
-            }
-
-            _context.Tags.Remove(exTag);
+            if (tag == null)
+                return Json(new { status = 404 });
+            _context.Tags.Remove(tag);
             _context.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            return Json(new { status = 200 });
         }
-
     }
 }

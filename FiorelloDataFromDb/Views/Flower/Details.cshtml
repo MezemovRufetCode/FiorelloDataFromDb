@@ -1,6 +1,7 @@
 ﻿@model Flower
 @{
     ViewData["Title"] = "Details";
+    List<Flower> related = ViewBag.RelatedFlowers;
 }
 
 <div id="productListPage">
@@ -182,51 +183,7 @@
             <h4>RELATED PRODUCTS</h4>
             <div class="products">
                 <div class="prduct col-lg-3 col-md-4 col-sm-6">
-                    <div class="prdctimg">
-                        <figure>
-                            <img src="~/assets/images/shop-7-img.jpg" alt="">
-                        </figure>
-
-                    </div>
-                    <div class="flower-info">
-                        <h5 class="name">MAJESTY PALM</h5>
-                        <p class="price">$100</p>
-                    </div>
-                </div>
-
-                <div class="prduct col-lg-3 col-md-4 col-sm-6">
-                    <div class="prdctimg">
-                        <figure>
-                            <img src="~/assets/images/shop-8-img.jpg" alt="">
-                        </figure>
-                    </div>
-                    <div class="flower-info">
-                        <h5 class="name">FOXGLOVE FLOWER</h5>
-                        <p class="price">$100</p>
-                    </div>
-                </div>
-                <div class="prduct col-lg-3 col-md-4 col-sm-6">
-                    <div class="prdctimg">
-                        <figure>
-                            <img src="~/assets/images/shop-6-img.jpg" alt="">
-                        </figure>
-                    </div>
-                    <div class="flower-info">
-                        <h5 class="name">SWEET ALYSSUM</h5>
-                        <p class="price">$100</p>
-                    </div>
-                </div>
-
-                <div class="prduct col-lg-3 col-md-4 col-sm-6">
-                    <div class="prdctimg">
-                        <figure>
-                            <img src="~/assets/images/shop-10-img.jpg" alt="">
-                        </figure>
-                    </div>
-                    <div class="flower-info">
-                        <h5 class="name">SPRING SNOWFLAKE</h5>
-                        <p class="price">$100</p>
-                    </div>
+                    @await Html.PartialAsync("_FlowerPartialView", related)
                 </div>
             </div>
         </div>
