@@ -60,8 +60,8 @@ namespace FiorelloDataFromDb.Areas.FiorelloManager.Controllers
                 ModelState.AddModelError("", "This name existed,try different");
                 return View();
             }
-            //exCategory.Name = category.Name;
-            _context.Categories.Remove(exCategory);
+            exCategory.Name = category.Name;
+            //_context.Categories.Remove(exCategory);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }

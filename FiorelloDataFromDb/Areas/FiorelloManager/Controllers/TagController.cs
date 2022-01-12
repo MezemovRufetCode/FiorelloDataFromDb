@@ -22,5 +22,73 @@ namespace FiorelloDataFromDb.Areas.FiorelloManager.Controllers
             List<Tag> model = _context.Tags.Include(t => t.FlowerTags).ToList();
             return View(model);
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Tag tag)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+                //return Content("Max length can be 20");
+            }
+            _context.Tags.Add(tag);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Edit(int id)
+        {
+            Tag tag = _context.Tags.FirstOrDefault(t => t.Id == id);
+            return View(tag);
+        }
+        [HttpPost]
+        public IActionResult Edit(Tag tag)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            Tag exTag = _context.Tags.FirstOrDefault(t => t.Id == tag.Id);
+            if (exTag == null)
+            {
+                return NotFound();
+            }
+            Category sname = _context.Categories.FirstOrDefault(c => c.Name.ToLower() == tag.Name.ToLower());
+            if (sname != null)
+            {
+                ModelState.AddModelError("", "This name existed,try different");
+                return View();
+            }
+            exTag.Name = tag.Name;
+            //_context.Tags.Remove(exTag);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Delete(int id)
+        {
+            Tag tag = _context.Tags.FirstOrDefault(t => t.Id == id);
+            return View(tag);
+        }
+        public IActionResult Delete(Tag tag)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            Tag exTag = _context.Tags.FirstOrDefault(t => t.Id == tag.Id);
+            if (exTag == null)
+            {
+                return NotFound();
+            }
+
+            _context.Tags.Remove(exTag);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
