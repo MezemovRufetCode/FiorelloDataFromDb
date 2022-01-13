@@ -16,6 +16,13 @@ namespace FiorelloDataFromDb.Controllers
         {
             _context = context;
         }
+        public IActionResult Index(int page=1)
+        {
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPage = Math.Ceiling((decimal)_context.Flowers.Count() / 2) ;
+            List<Flower> model = _context.Flowers.Include(f=>f.FlowerCategories).ThenInclude(fc=>fc.Category).Include(f=>f.FlowerImages).Skip((page-1)*2).Take(2).ToList();
+            return View(model);
+        }
         public IActionResult Details(int id,int categoryId)
         {
             Flower flower = _context.Flowers.Include(f=>f.FlowerCategories).ThenInclude(fc=>fc.Category)
