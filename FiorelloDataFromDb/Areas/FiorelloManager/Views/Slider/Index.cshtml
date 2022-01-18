@@ -47,9 +47,19 @@
                 <td>
                     @slider.Title
                 </td>
-                <td>
-                    @slider.Desc
-                </td>
+                @if (slider.Desc.Length > 25)
+                {
+                    <td>
+                        @slider.Desc.Substring(0, 25)...
+                    </td>
+                }
+                else
+                {
+                     <td>
+                          @slider.Desc
+                    </td>
+                    
+                }
                 <td>
                     <img style="width:100px;height:60px;object-fit:contain;border-radius:0px" src="~/assets/images/@slider.Signature" alt="slider image" />
                 </td>

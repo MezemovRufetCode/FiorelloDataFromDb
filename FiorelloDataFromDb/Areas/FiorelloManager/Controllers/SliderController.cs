@@ -73,5 +73,97 @@ namespace FiorelloDataFromDb.Areas.FiorelloManager.Controllers
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Edit(int id)
+        {
+            Slider slider = _context.Sliders.FirstOrDefault(s => s.Id == id);
+            if (slider == null)
+                return NotFound();
+            return View(slider);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Slider slider)
+        {
+            Slider existSlider = _context.Sliders.FirstOrDefault(s => s.Id == slider.Id);
+            // bu yazilisin meqsedi sliderde qeyd elediyimiz required max lenght tipli seylerin duzgunluyunu yoxlayir
+            if (existSlider == null)
+            {
+                return NotFound();
+            }
+            if (!ModelState.IsValid)
+                return View(existSlider);
+            if(slider.ImageFile!=null && slider.SignatureFile == null)
+            {
+                if (!slider.ImageFile.IsImage())
+                {
+                    ModelState.AddModelError("ImageFile", "Please select img file");
+                    return View(existSlider);
+                }
+                if (!slider.ImageFile.CheckSize(2))
+                {
+                    ModelState.AddModelError("ImageFile", "Image size max can be 2 mb");
+                    return View(existSlider);
+                } 
+                Helpers.Helper.DeleteImg(_env.WebRootPath, "assets/images", existSlider.Image);
+                existSlider.Image = slider.ImageFile.SaveImg(_env.WebRootPath, "assets/images");
+            }
+
+            else if(slider.ImageFile==null && slider.SignatureFile != null)
+            {
+                if (!slider.SignatureFile.IsImage())
+                {
+                    ModelState.AddModelError("SignatureFile", "Please select img file");
+                    return View(existSlider);
+                }
+                if (!slider.SignatureFile.CheckSize(2))
+                {
+                    ModelState.AddModelError("SignatureFile", "Image size max can be 2 mb");
+                    return View(existSlider);
+                }
+                if (existSlider.SignatureFile != null)
+                {
+                    Helpers.Helper.DeleteImg(_env.WebRootPath, "assets/images", existSlider.Signature);
+                }
+                existSlider.Signature = slider.SignatureFile.SaveImg(_env.WebRootPath, "assets/images");
+            }
+            else if(slider.ImageFile !=null && slider.SignatureFile != null)
+            {
+                if (!slider.SignatureFile.IsImage())
+                {
+                    ModelState.AddModelError("SignatureFile", "Please select img file");
+                    return View(existSlider);
+                }
+                if (!slider.SignatureFile.CheckSize(2))
+                {
+                    ModelState.AddModelError("SignatureFile", "Image size max can be 2 mb");
+                    return View(existSlider);
+                }
+
+                if (!slider.ImageFile.IsImage())
+                {
+                    ModelState.AddModelError("ImageFile", "Please select img file");
+                    return View(existSlider);
+                }
+                if (!slider.ImageFile.CheckSize(2))
+                {
+                    ModelState.AddModelError("ImageFile", "Image size max can be 2 mb");
+                    return View(existSlider);
+                }
+                if (existSlider.SignatureFile!=null){
+                    Helpers.Helper.DeleteImg(_env.WebRootPath, "assets/images", existSlider.Signature);
+                }
+              
+                existSlider.Signature = slider.SignatureFile.SaveImg(_env.WebRootPath, "assets/images");
+
+                Helpers.Helper.DeleteImg(_env.WebRootPath, "assets/images", existSlider.Image);
+                existSlider.Image = slider.ImageFile.SaveImg(_env.WebRootPath, "assets/images");
+            }
+            existSlider.Title = slider.Title;
+            existSlider.Desc = slider.Desc;
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+
+        }
     }
 }
