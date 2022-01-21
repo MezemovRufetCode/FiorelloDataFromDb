@@ -41,8 +41,14 @@ namespace FiorelloDataFromDb
                 option.Password.RequireNonAlphanumeric = false;
                 option.Password.RequireLowercase = false;
                 option.Password.RequireUppercase = false;
+                option.Lockout.MaxFailedAccessAttempts = 5;
+                option.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                //yeni userler ucun bele lockout prinsiplerini tetbiq etmek ucundur
+                option.Lockout.AllowedForNewUsers = true;
 
             }
+            //add default token email tesdiq edende,parol deyismeye calisanda token generate olur,
+            //onun ucun istifade olunur
                 ).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
         }
 

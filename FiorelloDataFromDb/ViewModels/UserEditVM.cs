@@ -6,25 +6,17 @@ using System.Threading.Tasks;
 
 namespace FiorelloDataFromDb.ViewModels
 {
-    public class RegisterVM
+    public class UserEditVM
     {
-        [Required]
-        [StringLength(maximumLength:25)]
         public string Username { get; set; }
-        [Required]
+        public string Fullname { get; set; }
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [Required]
-        [StringLength(maximumLength:70)]
-        public string Fullname { get; set; }
-        [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        [Required]
         [DataType(DataType.Password)]
         [Compare(nameof(Password))]
         public string ConfirmPassword { get; set; }
-        public bool Terms { get; set; }
-
+        public string CurrentPassword { get; set; }
     }
 }

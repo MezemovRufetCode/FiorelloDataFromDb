@@ -36,5 +36,21 @@ namespace FiorelloDataFromDb.Controllers
 
             return View(flower);
         }
+
+        //public IActionResult SearchResult(string Name, int? CategoryId)
+        //{
+        //    List<Flower> flowers = new List<Flower>();
+        //    if (CategoryId != null)
+        //    {
+        //        flowers = _context.Flowers.Where(f => f.Name.ToLower().Contains(Name.ToLower()) && f.FlowerCategories.FirstOrDefault().CategoryId == CategoryId).Include(f => f.FlowerCategories).ThenInclude(fc => fc.Category).Include(f => f.FlowerImages).ToList();
+        //    }
+        //    else
+        //    {
+        //        flowers = _context.Flowers.Where(f => f.Name.ToLower().Contains(Name.ToLower())).Include(f => f.FlowerCategories).ThenInclude(fc => fc.Category).Include(f => f.FlowerImages).ToList();
+        //    }
+        //    ViewBag.SearchName = Name;
+        //    ViewBag.Categories = _context.Categories.ToList();
+        //    return View(flowers);
+        //}
     }
 }

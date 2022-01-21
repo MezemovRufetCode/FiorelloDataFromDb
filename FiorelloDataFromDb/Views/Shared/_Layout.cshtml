@@ -254,6 +254,43 @@
                                         </ul>
                                     </div>
                                 </li>
+                                @if (!User.Identity.IsAuthenticated)
+                                {
+
+                                    <li class="menu-item-has-children">
+                                        <a class="navAnc"><span style="color:red">ACCOUNT</span></a>
+                                        <div class="sub-menu single-column-menu">
+                                            <ul>
+                                                <li><a asp-controller="account" asp-action="login">Login</a></li>
+                                                <li> <a asp-controller="account" asp-action="register">Register</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+
+
+                                    @*<li>
+                <a asp-controller="account" asp-action="login">Login</a><br />
+                <a asp-controller="account" asp-action="register">Register</a>
+            </li>*@
+                                }
+                                else
+                                {
+                                    <li class="menu-item-has-children">
+                                        <a class="navAnc" ><span style="color:red">ACCOUNT</span></a>
+                                        <div class="sub-menu single-column-menu">
+                                            <ul>
+                                                <li> <a asp-controller="account" asp-action="edit">@User.Identity.Name</a></li>
+                                                <li> <a asp-controller="account" asp-action="logout">Logout</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+
+                                    @*<li>
+                                        <a asp-controller="account" asp-action="edit">@User.Identity.Name</a><br />
+                                        <a asp-controller="account" asp-action="logut">Logut</a>
+                                    </li>*@
+                                }
+
                             </ul>
                         </nav>
                     </div>

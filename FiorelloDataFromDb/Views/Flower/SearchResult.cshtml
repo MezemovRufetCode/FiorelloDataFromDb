@@ -1,0 +1,27 @@
+﻿@*@model List<Flower>
+@{
+    Layout = null;
+}
+
+<section>
+    <div>
+        <form method="get" asp-controller="flower" asp-action="searchresult">
+            <input name="Name" placeholder="Search..." value="@ViewBag.SearchName">
+            <select name="CategoryId">
+                <option>Select all</option>
+                @foreach (var item in ViewBag.Categories)
+                {
+                    <option value="@item.Id">@item.Name</option>
+}
+            </select>
+        </form>
+
+    </div>
+</section>
+<section id="products">
+    <div class="container">
+        <div class="row">
+            @await Html.PartialAsync("_FlowerPartialView", Model)
+        </div>
+    </div>
+</section>*@
