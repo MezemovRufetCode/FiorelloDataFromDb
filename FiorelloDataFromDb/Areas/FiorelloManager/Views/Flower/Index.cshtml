@@ -73,13 +73,17 @@
                         @flower.Price
                     </td>
                     <td>
-                        <a asp-controller="flower" asp-action="edit" asp-route-id="@flower.Id" class="btn btn-primary btn-icon-text mt-3">
+                        <a asp-controller="flower" asp-action="edit" asp-route-id="@flower.Id" class="btn btn-warning btn-icon-text mt-3">
                             <i class="mdi mdi-file-check btn-icon-append"></i>
                             Edit
                         </a>
-                        <a asp-controller="flower" asp-action="delete" asp-route-id="@flower.Id" class="btn btn-primary btn-icon-text mt-3 delete-item">
+                        <a asp-controller="flower" asp-action="delete" asp-route-id="@flower.Id" class="btn btn-danger btn-icon-text mt-3 delete-item">
                             <i class="mdi mdi-alert btn-icon-prepend"></i>
                             Delete
+                        </a>
+                        <a asp-controller="flower" asp-action="comments" asp-route-FlowerId="@flower.Id" class="btn btn-primary btn-icon-text mt-3">
+                          
+                            Comments (@flower.Comments.Count)
                         </a>
 
                     </td>

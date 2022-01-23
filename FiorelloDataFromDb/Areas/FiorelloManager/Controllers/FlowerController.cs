@@ -24,7 +24,7 @@ namespace FiorelloDataFromDb.Areas.FiorelloManager.Controllers
         }
         public IActionResult Index()
         {
-            List<Flower> flowers = _context.Flowers.Include(f => f.FlowerImages).ToList();
+            List<Flower> flowers = _context.Flowers.Include(f => f.FlowerImages).Include(f=>f.Comments).ToList();
             return View(flowers);
         }
         public IActionResult Create()
@@ -171,6 +171,42 @@ namespace FiorelloDataFromDb.Areas.FiorelloManager.Controllers
 
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Comments(int FlowerId)
+        {
+            if (!_context.Comments.Any(c => c.FlowerId != FlowerId))
+                return RedirectToAction("Index", "Flower");
+            List<Comment> comments = _context.Comments.Include(c => c.AppUser).Where(c => c.FlowerId == FlowerId).ToList();
+            return View(comments);
+        }
+        //public IActionResult CommentAccept(int id)
+        //{
+        //    if (!_context.Comments.Any(c => c.FlowerId != id))
+        //        return RedirectToAction("Comments", "Flower");
+        //    Comment comment = _context.Comments.SingleOrDefault(c=>c.Id==id);
+        //    comment.IsAccess = true;
+        //    _context.SaveChanges();
+        //    return RedirectToAction("Comments","Flower",new { FlowerId = comment.FlowerId });
+        //}
+        //public IActionResult CommentReject(int id)
+        //{
+        //    if (!_context.Comments.Any(c => c.FlowerId != id))
+        //        return RedirectToAction("Comments", "Flower");
+        //    Comment comment = _context.Comments.SingleOrDefault(c => c.Id == id);
+        //    comment.IsAccess = false;
+        //    _context.SaveChanges();
+        //    return RedirectToAction("Comments", "Flower", new { FlowerId = comment.FlowerId });
+        //}
+
+        //qisa variant
+        public IActionResult CommentStatus(int id)
+        {
+            if (!_context.Comments.Any(c => c.FlowerId != id))
+                return RedirectToAction("Comments", "Flower");
+            Comment comment = _context.Comments.SingleOrDefault(c => c.Id == id);
+            comment.IsAccess = comment.IsAccess ? false : true;
+            _context.SaveChanges();
+            return RedirectToAction("Comments", "Flower", new { FlowerId = comment.FlowerId });
         }
     }
 }

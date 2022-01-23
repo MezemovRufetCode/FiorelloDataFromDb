@@ -25,5 +25,6 @@ namespace FiorelloDataFromDb.DAL
         public DbSet<Tag> Tags { get; set; }
         public DbSet<FlowerTag> FlowerTags { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }

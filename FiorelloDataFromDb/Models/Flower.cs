@@ -34,5 +34,6 @@ namespace FiorelloDataFromDb.Models
         public List<IFormFile> ImageFiles { get; set; }
         [NotMapped]
         public List<int> ImageIds { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }

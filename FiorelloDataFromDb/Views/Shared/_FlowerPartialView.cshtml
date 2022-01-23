@@ -1,12 +1,12 @@
 ﻿@model List<Flower>
+
 @foreach (Flower flower in Model)
 {
-    <div class="all
+    <div class="all  col-lg-3 col-md-4 col-sm-6
         @foreach (FlowerCategory flowerCategory in flower.FlowerCategories)
         {
         @(flowerCategory.Category.Name.ToLower()+ " ")
-         }
-                             col-lg-3 col-md-4 col-sm-6">
+         }">
         <div class="post-img">
             <a asp-controller="flower" asp-action="details" asp-route-id="@flower.Id" asp-route-categoryId="@flower.FlowerCategories.FirstOrDefault().CategoryId">
                 <figure>

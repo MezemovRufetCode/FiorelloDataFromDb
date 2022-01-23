@@ -86,7 +86,7 @@
                     <li>ADDITIONAL INFORMATION</li>
                 </div>
                 <div class="category" id="rev">
-                    <li>REVIEWS (2)</li>
+                    <li>REVIEWS (@Model.Comments.Count(c => c.IsAccess == true))</li>
                 </div>
                 </ul>
             </div>
@@ -111,64 +111,50 @@
 
                 <div class="all rev">
                     <h4>Reviews</h4>
-                    <div class="workers">
-                        <div class="img">
-                            <img src="~/assets/images/h3-team-img-3.png" alt="">
-                        </div>
-                        <div class="revcontent">
-                            <p class="name">JOSHUA GARCIA <span> 27.04.2018</span></p>
-                            <p class="info">
-                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-                                commodo
-                                ligula eget
-                                dolor. Aenean massa. Cum sociis Theme natoque penatibus et magnis dis
-                                parturient
-                                montes,
-                                nascetur ridiculus mus.
-                            </p>
-                        </div>
-                    </div>
+                    @foreach (var comment in Model.Comments.Where(c=>c.IsAccess==true).OrderBy(c=>c.WriteTime))
+                    {
 
-                    <div class="workers">
-                        <div class="img">
-                            <img src="~/assets/images/h3-team-img-2.png" alt="">
+
+                        <div class="workers">
+                            <div class="img">
+                                <img src="~/assets/images/h3-team-img-3.png" alt="">
+                            </div>
+                            <div class="revcontent">
+                                <p class="name">@comment.AppUser.Fullname <span> @comment.WriteTime.ToString("dd MMMM yyyy  HH:mm")</span></p>
+                                <p class="info">
+                                    @comment.Text
+                                </p>
+                                @if (comment.AppUser.UserName == User.Identity.Name)
+                                {
+                                <a asp-action="DeleteComment" asp-route-id="@comment.Id" class="text-danger" style="text-decoration:none">Delete</a>
+                                }
+                            </div>
                         </div>
-                        <div class="revcontent">
-                            <p class="name">JOAN STANLEY <span> 27.04.2018</span></p>
-                            <p class="info">
-                                Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus,
-                                sem
-                                quam semper
-                                libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel,
-                                luctus
-                                pulvinar,
-                                hendrerit
-                            </p>
-                        </div>
-                    </div>
+                    }
+                  
                     <h4>Add a review</h4>
                     <div class="info">
                         <p>
                             Your email address will not be published. Required fields are marked *
                         </p>
                     </div>
-                    <form action="">
-                        <label for="reviewArea">Your review *</label><br>
-                        <textarea class="form-control" name="" id="reviewArea" cols="30" rows="7"
+                    <form asp-action="AddComment" method="post">
+                        <label for="Text">Your review *</label><br>
+                        <textarea class="form-control" name="Text" id="reviewArea" cols="30" rows="7"
                                   required></textarea><br>
-                        <label for="Name">Name *</label><br>
-                        <input type="text" id="Name" class="form-control" placeholder="Enter name"
-                               required><br>
+                        <input type="hidden" name="FlowerId" value="@Model.Id" />
+
+                        @*<label for="Name">Name *</label><br>
+                        <input type="text" id="Name" class="form-control" placeholder="Enter name"><br>
                         <label for="Email">Email *</label><br>
-                        <input type="email" id="Email" class="form-control" placeholder="Enter email"
-                               required><br>
+                        <input type="email" id="Email" class="form-control" placeholder="Enter email"><br>
                         <input type="checkbox" id="cehck" class="form-check-input"><br>
                         <label for="check">
                             Save my name, email, and website in this browser for the next
                             time I
                             comment.
-                        </label><br>
-                        <input type="submit" value="SUBMIT">
+                        </label><br>*@
+                        <button type="submit">SUBMIT</button>
                     </form>
                 </div>
 
